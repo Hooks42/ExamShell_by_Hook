@@ -45,7 +45,7 @@ printf "${RESET}"
 
 printf "${GREEN}"
 printf "==================================================="
-printf "             Installation de Python"
+printf "             Installation de Python 🐍"
 sleep "0.15"
 printf "."
 sleep "0.15"
@@ -56,14 +56,18 @@ printf "==================================================="
 printf "${RESET}"
 printf "${BLUE}"
 
-sudo apt-get update
-sudo apt-get install python3
-sudo apt-get update
-sudo apt-get install python3-pip
+if which python3 > /dev/null; then
+	printf "${GREEN}"
+	printf "Python3 est deja installe"
+	printf "${RESET}"
+else
+	sudo apt-get update
+	sudo apt-get install python3
+fi
 
 printf "${GREEN}"
 printf "==================================================="
-printf "             Installation de Snap"
+printf "             Installation de Snap 👻"
 sleep "0.15"
 printf "."
 sleep "0.15"
@@ -74,11 +78,17 @@ printf "==================================================="
 printf "${RESET}"
 printf "${BLUE}"
 
-sudo apt install snapd
+if which snap > /dev/null; then
+	printf "${GREEN}"
+	printf "snap est deja installe"
+	printf "${RESET}"
+else
+	sudo apt install snapd
+fi
 
 printf "${GREEN}"
 printf "==================================================="
-printf "             Installation d'Emote"
+printf "             Installation d'Emote 😄"
 sleep "0.15"
 printf "."
 sleep "0.15"
@@ -89,11 +99,18 @@ printf "==================================================="
 printf "${RESET}"
 printf "${BLUE}"
 
-sudo snap install emote
+if which emote > /dev/null; then
+	printf "${GREEN}"
+	printf "emote est deja installe"
+	printf "${RESET}"
+else
+	sudo snap install emote
+fi
+
 
 printf "${GREEN}"
 printf "==================================================="
-printf "             Installation d'ExamShell'"
+printf "             Installation d'ExamShell 💻️"
 sleep "0.15"
 printf "."
 sleep "0.15"
@@ -104,5 +121,9 @@ printf "==================================================="
 printf "${RESET}"
 printf "${BLUE}"
 
-git clone https://github.com/Hooks42/ExamShell_by_Hook.git $HOME
-sudo echo ~/.zshrc
+mkdir $HOME/Documents/Scripts > /dev/null
+git clone https://github.com/Hooks42/ExamShell_by_Hook.git $HOME/Documents/Scripts
+sudo echo "alias examshel=\"$HOME/Documents/Scripts/Examshell_by_Hook/Examshell\"" > ~/.zshrc
+printf "${GREEN}"
+printf "Tout s'est bien installe 🔥"
+printf "${RESET}"
