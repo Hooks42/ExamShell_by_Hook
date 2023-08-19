@@ -10,33 +10,33 @@ WHITE="\e[1;37m"
 
 printf "${GREEN}"
 printf " _____                    _____ _          _ _ \n"
-sleep "0.3"
+sleep 0.3
 printf "|  ___|                  /  ___| |        | | |\n"
-sleep "0.3"
+sleep 0.3
 printf "| |____  ____ _ _ __ ___ \ \`--.| |__   ___| | |\n"
-sleep "0.3"
+sleep 0.3
 printf "|  __\ \/ / _\` | '_ \` _ \ \`--. \ '_ \ / _ \ | |\n"
-sleep "0.3"
+sleep 0.3
 printf "| |___>  < (_| | | | | | /\__/ / | | |  __/ | |\n"
-sleep "0.3"
+sleep 0.3
 printf "\____/_/\_\__,_|_| |_| |_\____/|_| |_|\___|_|_|\n"
-sleep "0.3"
+sleep 0.3
 printf "                                               \n"
 printf "                                               \n"
 printf "       _____          _        _ _             \n"
-sleep "0.3"
+sleep 0.3
 printf "      |_   _|        | |      | | |            \n"
-sleep "0.3"
+sleep 0.3
 printf "        | | _ __  ___| |_ __ _| | | ___ _ __   \n"
-sleep "0.3"
+sleep 0.3
 printf "        | || '_ \/ __| __/ _\` | | |/ _ \ '__|  \n"
-sleep "0.3"
+sleep 0.3
 printf "       _| || | | \__ \ || (_| | | |  __/ |     \n"
-sleep "0.3"
+sleep 0.3
 printf "       \___/_| |_|___/\__\__,_|_|_|\___|_|     \n"
-sleep "0.3"
+sleep 0.3
 printf "                                               \n"
-sleep "0.3"
+sleep 0.3
 printf "                                               \n"
 printf "${RESET}"
 
@@ -46,13 +46,13 @@ printf "${RESET}"
 printf "${GREEN}"
 printf "===================================================\n"
 printf "             Installation de Python 🐍\n"
-sleep "0.3"
+sleep 0.3
 printf "                       ."
-sleep "0.3"
+sleep 0.3
 printf "."
-sleep "0.3"
+sleep 0.3
 printf ".\n"
-sleep "0.3"
+sleep 0.3
 printf "===================================================\n"
 printf "${RESET}"
 printf "${BLUE}"
@@ -69,13 +69,13 @@ fi
 printf "${GREEN}"
 printf "===================================================\n"
 printf "             Installation de Snap 👻\n"
-sleep "0.3"
+sleep 0.3
 printf "                        ."
-sleep "0.3"
+sleep 0.3
 printf "."
-sleep "0.3"
+sleep 0.3
 printf ".\n"
-sleep "0.3"
+sleep 0.3
 printf "===================================================\n"
 printf "${RESET}"
 printf "${BLUE}"
@@ -91,13 +91,13 @@ fi
 printf "${GREEN}"
 printf "===================================================\n"
 printf "             Installation d'Emote 😄\n"
-sleep "0.3"
+sleep 0.3
 printf "                        ."
-sleep "0.3"
+sleep 0.3
 printf "."
-sleep "0.3"
+sleep 0.3
 printf ".\n"
-sleep "0.3"
+sleep 0.3
 printf "===================================================\n"
 printf "${RESET}"
 printf "${BLUE}"
@@ -110,24 +110,56 @@ else
 	sudo snap install emote > /dev/null
 fi
 
+printf "${GREEN}"
+printf "===================================================\n"
+printf "             Installation de PYinstaller 🔱\n"
+sleep 0.3
+printf "                        ."
+sleep 0.3
+printf "."
+sleep 0.3
+printf ".\n"
+sleep 0.3
+printf "===================================================\n\n"
+if which pyinstaller > /dev/null; then
+	printf "${GREEN}"
+	printf "\nPYinstaller est deja installe\n\n"
+	printf "${RESET}"
+else
+	pip install pyinstaller > /dev/null
+	echo "export PATH=\"$PATH:${HOME}.local/bin\"" | sudo tee -a ~/.zshrc
+fi
+printf "${RESET}"
 
 printf "${GREEN}"
 printf "===================================================\n"
 printf "             Installation d'ExamShell 💻️\n"
-sleep "0.3"
+sleep 0.3
 printf "                        ."
-sleep "0.3"
+sleep 0.3
 printf "."
-sleep "0.3"
+sleep 0.3
 printf ".\n"
-sleep "0.3"
+sleep 0.3
 printf "===================================================\n\n"
 printf "${RESET}"
 printf "${BLUE}"
 
-mkdir $HOME/Documents/Scripts > /dev/null
-git clone https://github.com/Hooks42/ExamShell_by_Hook.git $HOME/Documents/Scripts/ExamShell_by_Hook > /dev/null
-echo "alias examshell=\"$HOME/Documents/Scripts/ExamShell_by_Hook/Examshell\"" | sudo tee -a ~/.zshrc
+if [ ! -d "${HOME}/Documents/Scripts" ]; then
+	mkdir ${HOME}/Documents/Scripts
+fi
+if [ ! -d "${HOME}/Documents/Scripts/ExamShell_by_Hook" ]; then
+	git clone https://github.com/Hooks42/ExamShell_by_Hook.git "${HOME}/Documents/Scripts/ExamShell_by_Hook" > /dev/null
+else
+	rm -rf "${HOME}/Documents/Scripts/ExamShell_by_Hook"
+	git clone https://github.com/Hooks42/ExamShell_by_Hook.git "${HOME}/Documents/Scripts/ExamShell_by_Hook" > /dev/null
+fi
+
+pyinstaller --onefile "${HOME}/Documents/Scripts/ExamShell_by_Hook/main.py" > /dev/null
+mv "./dist/main" "./dist/ExamShell"
+cp "./dist/ExamShell" "${HOME}/Documents/Scripts/ExamShell_by_Hook"
+rm -rf "./dist/" "./build/" "${HOME}/Documents/Scripts/ExamShell_by_Hook/main.py" "./main.spec"
+echo "alias examshell=\"${HOME}/Documents/Scripts/ExamShell_by_Hook/ExamShell\"" | sudo tee -a ~/.zshrc > /dev/null
 printf "${GREEN}"
 printf "Tout s'est bien installe 🔥\n"
 printf "Pour lancer ExamShell il suffit d'ouvrir un nouveau terminal et de taper examshell"
