@@ -164,15 +164,16 @@ printf "${GREEN}"
 printf "Tout s'est bien installe 🔥\n"
 printf "Pour lancer ExamShell il suffit de taper examshell\n\n"
 printf "${RESET}"
-printf "${PURPLE}"
-printf "Ce terminal va se fermer dans:"
-printf "5"
+printf "${CYAN}"
+printf "Ce terminal va se fermer dans:\n"
+printf "5\n"
 sleep 1
-printf "4"
+printf "4\n"
 sleep 1
-printf "3"
+printf "3\n"
 sleep 1
-printf "2"
+printf "2\n"
 sleep 1
-printf "1"
+printf "1\n"
+printf "${RESET}"
 exit
