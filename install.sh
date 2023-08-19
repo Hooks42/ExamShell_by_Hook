@@ -162,5 +162,17 @@ rm -rf "./dist/" "./build/" "${HOME}/Documents/Scripts/ExamShell_by_Hook/main.py
 echo "alias examshell=\"${HOME}/Documents/Scripts/ExamShell_by_Hook/ExamShell\"" | sudo tee -a ~/.zshrc > /dev/null
 printf "${GREEN}"
 printf "Tout s'est bien installe 🔥\n"
-printf "Pour lancer ExamShell il suffit d'ouvrir un nouveau terminal et de taper examshell"
+printf "Pour lancer ExamShell il suffit de taper examshell\n\n"
 printf "${RESET}"
+printf "${PURPLE}"
+printf "Ce terminal va se fermer dans:"
+printf "5"
+sleep 1
+printf "4"
+sleep 1
+printf "3"
+sleep 1
+printf "2"
+sleep 1
+printf "1"
+exit
