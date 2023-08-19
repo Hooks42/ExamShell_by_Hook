@@ -79,6 +79,7 @@ def ft_announce():
     print("3. Palier 3 ⛔️")
     print("4. Palier 4 📛")
     print("5. Exam Complet 🔱")
+    print("6. Quitter 🗿")
     print("\n")
 
 """
@@ -96,13 +97,13 @@ def ft_choice():
     ft_announce()
     choix = 0
     chance = 2
-    while choix <= 0 or choix > 5:
+    while choix <= 0 or choix > 6:
         try: choix = int(input())
         except ValueError:
             continue
         except EOFError:
             continue        
-        if choix <= 0 or choix > 5:
+        if choix <= 0 or choix > 6:
             print(RESET, RED)
             print("S'il te plait fais un effort choisis entre le choix 1 et choix 5 😤")
             print(RESET, GREEN)
@@ -133,6 +134,8 @@ def ft_start_palier():
         ft_palier4()
     elif choice == 5:
         ft_full_exam()
+    elif choice == 6:
+        os._exit(0)
 
 
 """
