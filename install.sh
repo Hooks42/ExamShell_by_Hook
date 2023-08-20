@@ -159,7 +159,7 @@ pyinstaller --onefile "${HOME}/Documents/Scripts/ExamShell_by_Hook/main.py" > /d
 mv "./dist/main" "./dist/ExamShell"
 cp "./dist/ExamShell" "${HOME}/Documents/Scripts/ExamShell_by_Hook"
 rm -rf "./dist/" "./build/" "${HOME}/Documents/Scripts/ExamShell_by_Hook/main.py" "./main.spec"
-echo "alias examshell=\"${HOME}/Documents/Scripts/ExamShell_by_Hook/ExamShell\"" | sudo tee -a ~/.zshrc > /dev/null
+echo "alias examshell=\"cd ${HOME}/Documents/Scripts/ExamShell_by_Hook ; /home/hook/Documents/Scripts/ExamShell_by_Hook/ExamShell\"" | sudo tee -a ~/.zshrc > /dev/null
 printf "${GREEN}"
 printf "Tout s'est bien installe 🔥\n"
 printf "Pour lancer ExamShell il suffit de taper examshell\n\n"
