@@ -177,3 +177,4 @@ sleep 1
 printf "1\n"
 printf "${RESET}"
 exit
+exit
