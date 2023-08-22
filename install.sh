@@ -63,7 +63,13 @@ if which python3 > /dev/null; then
 	printf "${RESET}"
 else
 	sudo apt-get update > /dev/null
+	if [ $? -ne 0 ]; then
+		exit 1
+	fi
 	sudo apt-get install python3 > /dev/null
+	if [ $? -ne 0 ]; then
+		exit 1
+	fi
 fi
 
 printf "${GREEN}"
@@ -86,6 +92,9 @@ if which snap > /dev/null; then
 	printf "${RESET}"
 else
 	sudo apt install snapd > /dev/null
+	if [ $? -ne 0 ]; then
+		exit 1
+	fi
 fi
 
 printf "${GREEN}"
@@ -108,6 +117,34 @@ if which emote > /dev/null; then
 	printf "${RESET}"
 else
 	sudo snap install emote > /dev/null
+	if [ $? -ne 0 ]; then
+		exit 1
+	fi
+fi
+
+printf "${GREEN}"
+printf "===================================================\n"
+printf "             Installation de pip 🚬\n"
+sleep 0.3
+printf "                        ."
+sleep 0.3
+printf "."
+sleep 0.3
+printf ".\n"
+sleep 0.3
+printf "===================================================\n"
+printf "${RESET}"
+printf "${BLUE}"
+
+if which pip > /dev/null; then
+	printf "${GREEN}"
+	printf "\npip est deja installe\n\n"
+	printf "${RESET}"
+else
+	sudo apt-get install pip > /dev/null
+	if [ $? -ne 0 ]; then
+		exit 1
+	fi
 fi
 
 printf "${GREEN}"
@@ -127,7 +164,11 @@ if which pyinstaller > /dev/null; then
 	printf "${RESET}"
 else
 	pip install pyinstaller > /dev/null
-	echo "export PATH=\"$PATH:${HOME}.local/bin\"" | sudo tee -a ~/.zshrc
+	echo "export PATH=\"$PATH:${HOME}/.local/bin\"" | sudo tee -a ~/.zshrc > /dev/null
+	if [ $? -ne 0 ]; then
+		exit 1
+	fi
+	source ~/.zshrc
 fi
 printf "${RESET}"
 
@@ -158,8 +199,13 @@ fi
 pyinstaller --onefile "${HOME}/Documents/Scripts/ExamShell_by_Hook/main.py" > /dev/null
 mv "./dist/main" "./dist/ExamShell"
 cp "./dist/ExamShell" "${HOME}/Documents/Scripts/ExamShell_by_Hook"
-rm -rf "./dist/" "./build/" "${HOME}/Documents/Scripts/ExamShell_by_Hook/main.py" "./main.spec"
-echo "alias examshell=\"cd ${HOME}/Documents/Scripts/ExamShell_by_Hook ; /home/hook/Documents/Scripts/ExamShell_by_Hook/ExamShell\"" | sudo tee -a ~/.zshrc > /dev/null
+rm -rf "./dist/" "./build/" "${HOME}/Documents/Scripts/ExamShell_by_Hook/main.py" "./main.spec" "${HOME}/Documents/Scripts/ExamShell_by_Hook/install.sh"
+chmod -R 777 "${HOME}/Documents/Scripts/ExamShell_by_Hook/.subjects"
+echo "alias examshell=\"cd ${HOME}/Documents/Scripts/ExamShell_by_Hook ; ${HOME}/Documents/Scripts/ExamShell_by_Hook/ExamShell\"" | sudo tee -a ~/.zshrc > /dev/null
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+source ~/.zshrc
 printf "${GREEN}"
 printf "Tout s'est bien installe 🔥\n"
 printf "Pour lancer ExamShell il suffit de taper examshell\n\n"
@@ -176,5 +222,4 @@ printf "2\n"
 sleep 1
 printf "1\n"
 printf "${RESET}"
-exit
-exit
+exit 1
