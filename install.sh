@@ -141,7 +141,7 @@ if which pip > /dev/null; then
 	printf "\npip est deja installe\n\n"
 	printf "${RESET}"
 else
-	sudo apt-get install pip > /dev/null
+	sudo apt-get install python3-pip > /dev/null
 	if [ $? -ne 0 ]; then
 		exit 1
 	fi
