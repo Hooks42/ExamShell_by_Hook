@@ -576,6 +576,7 @@ def ft_recap(subject_session, level, current_grade, historic, retry, palier, tok
 
 
 def ft_historic(subject_session, historic, retry, level, subject_name, token, is_timer_runing):
+    last_subject = ""
     if is_timer_runing == False and no_exit == False:
         if token == 0:
             if level < 5:
