@@ -168,7 +168,7 @@ else
 	if [ $? -ne 0 ]; then
 		exit 1
 	fi
-	source ~/.zshrc
+	source "~/.zshrc"
 fi
 printf "${RESET}"
 
@@ -205,7 +205,7 @@ echo "alias examshell=\"cd ${HOME}/Documents/Scripts/ExamShell_by_Hook ; ${HOME}
 if [ $? -ne 0 ]; then
 	exit 1
 fi
-source ~/.zshrc
+source "~/.zshrc"
 printf "${GREEN}"
 printf "Tout s'est bien installe 🔥\n"
 printf "Pour lancer ExamShell il suffit de taper examshell\n\n"
