@@ -186,7 +186,7 @@ printf "===================================================\n\n"
 printf "${RESET}"
 printf "${BLUE}"
 
-if [ ! -d "${HOME}/Documents/Scripts" ]; then
+if [ ! -d "${HOME}/Documents/Scripts/ExamShell_by_Hook" ]; then
 	mkdir ${HOME}/Documents/Scripts
 fi
 if [ ! -d "${HOME}/Documents/Scripts/ExamShell_by_Hook" ]; then
