@@ -443,10 +443,10 @@ def ft_palier4():
     time.sleep(0.8)
     subjects = ["ft_itoa", "ft_split", "rev_wstr", "rostring", "sort_int_tab"]
     subject_session = ft_create_session_subject(subjects)
-    while ft_verif_double(subject_session) == False:
+    while ft_verif_double(subject_session, 0) == False:
         subject_session = ft_create_session_subject(subjects)
     while level is not None and level < int(5):
-        level, current_grade, historic, is_timer_runing = ft_recap(subject_session, level, current_grade, historic, retry, palier, 0, is_timer_runing, is_timer_runing)
+        level, current_grade, historic, is_timer_runing = ft_recap(subject_session, level, current_grade, historic, retry, palier, 0, is_timer_runing)
     ft_recap(subject_session, level, current_grade, historic, retry, palier, 0, is_timer_runing)
 
 
