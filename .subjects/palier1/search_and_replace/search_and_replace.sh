@@ -25,7 +25,9 @@ timeout 3s $path_executable "$test4" "o" "a" | cat -e >> $path_trace
 
 timeout 3s $path_executable "$test5" "w" "e" | cat -e >> $path_trace
 
-$path_executable "$test6" "{" "!" | cat -e >> $path_trace
+timeout 3s $path_executable "$test6" "{" "!" | cat -e >> $path_trace
+
+timeout 3s $path_executable "$test6" "8" "1" | cat -e >> $path_trace 
 
 
 #===================================================================
@@ -52,6 +54,8 @@ timeout 3s $path_correct "$test4" "o" "a" | cat -e >> $path_correct_trace
 timeout 3s $path_correct "$test5" "w" "e" | cat -e >> $path_correct_trace
 
 timeout 3s $path_correct "$test6" "{" "!" | cat -e >> $path_correct_trace
+
+timeout 3s $path_correct "$test6" "8" "1" | cat -e >> $path_correct_trace 
 
 
 #=====================================================================
